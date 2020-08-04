@@ -2,6 +2,7 @@ package com.revature.tier2;
 
 import static com.revature.config.TestConfiguration.getFileContents;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,6 +45,8 @@ public class Answer2Tests {
             tx.rollback();
 
             PointsTests.addPoints(20);
+        } catch(Exception e){
+            fail();
         }
     }
 }
