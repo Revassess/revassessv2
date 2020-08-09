@@ -62,4 +62,7 @@ following commands for the following.
  "mvn test -Dtest=TierXTests" where X is the tier number.
  
  > Note: you must be on the branch for the tier you want to test
- to be able to test it.
+ to be able to test it. Tests will need to be run locally and 
+ you will need to look into the tests to see why they are failing.
+ You are not to alter any of the tests, but it is essential that
+ you know what you need to do to pass the tier.
