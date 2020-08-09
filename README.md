@@ -3,6 +3,11 @@
 
 Make sure you add your email address to the travis.yml file.
 
+For this assessment, you are able to use any resources you wish,
+aside from other people. You are allowed to do any research needed,
+but are not allowed to communicate with other associates about the 
+evaluation.
+
 There are six tiers for this assessment that will get more difficult
 with each tier. Beginning with Tier 3, they will begin working off 
 previous work. So for example, tier 4 may use a db table constructed 
@@ -17,8 +22,8 @@ branch and complete those requirements. tiers 3 through 6
 will all be in the same tier.
 
 To submit your work, push your changes to the respective 
-branch. Your trainer can verify if the tier was successfully
-completed. 
+branch. You will recieve an email to the address you 
+supplied in the configuration file. 
 
 Your score is a compilation of the number of tiers completed
 and the total number of points accumulated. It is important 
@@ -32,3 +37,29 @@ be acquired).
 
 Do not alter the files in the test folder for any reason
 whatsoever.
+
+**Git Instructions**
+
+Knowledge of using git is required for this assessment. Use the
+following commands for the following. 
+
+### Checkout a new branch
+> git checkout branchname
+
+### Push code to branch
+> git add *  (will add all files to staging)
+
+> git commit -m "enter a commit message here"  (this will commit the files from staging and ready them to push)
+
+> git push  (push the files to git server)
+
+**Run Tests Locally**
+ You can either run the tests from the command line
+ or from your ide. To run the tests for the entire
+ tier, run the test labeled "TierXTests" where X is the
+ tier number. To run the tier from the command line, 
+ you will need maven installed. Run 
+ "mvn test -Dtest=TierXTests" where X is the tier number.
+ 
+ > Note: you must be on the branch for the tier you want to test
+ to be able to test it.
