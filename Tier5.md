@@ -11,7 +11,7 @@
 **Description/Setup:**
   - This Tier will test the associate’s ability to apply their knowledge of JavaScript and AJAX in order to fetch data from a provided endpoint and dynamically render the content on the screen
   - Design and styling of the page is up to the associate, though extra points can be earned for better styling.
-  - The web page should include an area to display the id, question text, answer text, and category of a flashcard which will be retrieved from the following link: https://random.s3.amazonaws.com/flashcards.json
+  - The web page should include an area to display the id, question text, answer text, and category of a flashcard which will be retrieved from the following link: https://example-for-java-curriculum.s3.amazonaws.com/flashcards.json
   - Push to personal branch and notify trainer to proceed to Tier 6.
 
 **Problem Set:**
