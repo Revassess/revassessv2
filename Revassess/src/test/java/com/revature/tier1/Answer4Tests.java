@@ -1,10 +1,12 @@
 package com.revature.tier1;
 
-import static com.revature.tier1.PointsTests.addPoints;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt:
@@ -13,14 +15,14 @@ import org.junit.Test;
  * length and return whether the sum of the powers 
  * is equal to the original integer.
  */
+@ExtendWith(RevAssess.class)
 public class Answer4Tests {
 
-    @Test
-    public void test4(){
+    @RevaTest(tier = 1, points = 40)
+    public void powerSumTest(){
 		assertTrue(NumberSumLength.checkNumberPowerLength(1));
 		assertFalse(NumberSumLength.checkNumberPowerLength(10));
 		assertTrue(NumberSumLength.checkNumberPowerLength(153));
 		assertFalse(NumberSumLength.checkNumberPowerLength(1635));
-        addPoints(40);
     }
 }

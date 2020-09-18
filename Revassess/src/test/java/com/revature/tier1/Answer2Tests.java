@@ -1,24 +1,28 @@
 package com.revature.tier1;
 
-import static com.revature.tier1.PointsTests.addPoints;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
+
 
 /**
  * prompt:
  * Implement a POJO using the 
  * provided UML class model
  */
+@ExtendWith(RevAssess.class)
 public class Answer2Tests {
 
-    @Test
-    public void test2() {
+    @RevaTest(tier = 1, points = 20)
+    public void classModelTest() {
         Class<User> userClass;
         List<Field> fields;
         String[] fieldNames = { "id", "firstName", "lastName", "username", "password", "role" };
@@ -26,7 +30,6 @@ public class Answer2Tests {
         fields = Arrays.asList(userClass.getDeclaredFields());
         assertEquals(fields.size(), fieldNames.length);
         fields.stream().forEach(e -> assertNotEquals(Arrays.asList(fieldNames).indexOf(e.getName()), -1));
-        addPoints(20);
     }
 
 }

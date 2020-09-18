@@ -1,12 +1,14 @@
 package com.revature.tier1;
 
-import static com.revature.tier1.PointsTests.addPoints;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt:
@@ -14,10 +16,11 @@ import org.junit.Test;
  * over an integer array and returns 
  * their sum.
  */
+@ExtendWith(RevAssess.class)
 public class Answer3Tests {
 
-    @Test
-    public void test3() {
+    @RevaTest(tier = 1, points = 30)
+    public void sumOverArrayTest() {
         int[] arr = { 1, 2, 3 };
         assertNotEquals(0, SumOverArray.IterateAndSum(arr));
         try {
@@ -32,7 +35,6 @@ public class Answer3Tests {
 		assertEquals(-45, SumOverArray.IterateAndSum(arr3));
 		int[] arr4 = { 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80 };
 		assertEquals(1095, SumOverArray.IterateAndSum(arr4));
-        addPoints(30);
     }
 
 }
