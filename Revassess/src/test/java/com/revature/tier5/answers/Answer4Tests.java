@@ -1,8 +1,8 @@
 package com.revature.tier5.answers;
 
-import static com.revature.tier5.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -11,25 +11,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 import junit.framework.AssertionFailedError;
 
 /**
  * prompt: Create a Bootstrap carousel that will allow users to click through
  * different flash cards one at a time
  */
+@ExtendWith(RevAssess.class)
 public class Answer4Tests {
 
     private WebDriver wd;
     Map<String, List<String>> jsonMap;
 
-    @Before
+    @BeforeEach
     public void pageSetup() {
         System.setProperty("webdriver.gecko.driver", "src/assets/geckodriver.exe");
         wd = new FirefoxDriver();
@@ -41,7 +44,7 @@ public class Answer4Tests {
             e.printStackTrace();
         }
     }
-    @Before
+    @BeforeEach
     public void answerSetup() {
         List<String> jsonQues = new ArrayList<>();
         jsonQues.add("core java question");
@@ -64,7 +67,7 @@ public class Answer4Tests {
         jsonMap.put("cardCat", jsonCat);
     }
 
-    @Test
+    @RevaTest(tier = 5, points = 40)
     public void testCarousel() throws InterruptedException {
     	try {
         for(int i = 0; i<=2; i++){
@@ -73,9 +76,10 @@ public class Answer4Tests {
             assertTrue(checkElements());
         }
         wd.close();
-        addPoints(40);
     	} catch(Exception e) {
     		fail();
+    	}finally {
+    		wd.close();
     	}
     }
 

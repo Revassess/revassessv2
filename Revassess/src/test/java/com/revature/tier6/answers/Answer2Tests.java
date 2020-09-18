@@ -1,8 +1,7 @@
 package com.revature.tier6.answers;
 
-import static com.revature.tier6.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -20,13 +19,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.servlet.RevassessServlet;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt: Implement a single servlet 
@@ -37,12 +39,13 @@ import org.mockito.Mockito;
  * database using the entities created 
  * in tier 4.
  */
+@ExtendWith(RevAssess.class)
 public class Answer2Tests {
 
     private HttpServlet serv;
     private Set<String> jsonKeys;
     private Method doGet;
-    @Before
+    @BeforeEach
     public void setup() throws SecurityException, NoSuchMethodException {
         RevassessServlet rev = new RevassessServlet();
         if (rev instanceof Servlet) {
@@ -62,7 +65,7 @@ public class Answer2Tests {
         // serv.getClass().
     }
 
-    @Before
+    @BeforeEach
     public void setupJson(){
         jsonKeys = new HashSet<>();
         jsonKeys.add("question");
@@ -71,7 +74,7 @@ public class Answer2Tests {
         jsonKeys.add("category");
     }
 
-    @Test
+    @RevaTest(tier = 6, points = 200)
     public void test2() throws ServletException, IOException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, NoSuchMethodException, SecurityException {
     	try {
@@ -82,7 +85,6 @@ public class Answer2Tests {
         when(response.getWriter()).thenReturn(writer);
         doGet.invoke(serv, request, response);
         writer.flush();
-        addPoints(200);
         ObjectMapper om = new ObjectMapper();
         String output = stringWriter.toString();
         TypeReference<Map<String, Object>> t = new TypeReference<Map<String,Object>>() {};

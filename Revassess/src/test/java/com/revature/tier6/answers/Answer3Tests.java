@@ -1,8 +1,8 @@
 package com.revature.tier6.answers;
 
-import static com.revature.tier6.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,22 +11,26 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt:
  * Register the servlet with tomcat 
  * by utilizing the deployment descriptor
  */
+@ExtendWith(RevAssess.class)
 public class Answer3Tests {
     
     private NodeList nl;
-    @Before
+    @BeforeEach
     public void setup() throws SAXException, IOException, ParserConfigurationException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -35,7 +39,7 @@ public class Answer3Tests {
 
     }
 
-    @Test
+    @RevaTest(tier = 6, points = 200)
     public void testServletInWebXml(){
     	try {
         assertTrue(nl.getLength()>0);
@@ -43,7 +47,6 @@ public class Answer3Tests {
         Node servclass = node.getFirstChild(), servname = node.getLastChild();
         assertTrue(servclass.getTextContent().equals("com.rev.servlet.RevassessServlet")||!servclass.getTextContent().equals(null));
         assertTrue(!servname.getTextContent().equals(null)||servname.getTextContent().equals("com.rev.servlet.RevassessServlet"));
-        addPoints(200);
     	} catch(Exception e) {
     		fail();
     	}

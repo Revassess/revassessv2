@@ -1,8 +1,8 @@
 package com.revature.tier5.answers;
 
-import static com.revature.tier5.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,15 +21,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
+
 /**
  * prompt: Dynamically render a flashcard's information obtained from the
  * provided endpoint to the screen
  */
+@ExtendWith(RevAssess.class)
 public class Answer3Tests {
     private WebDriver wd;
     Map<String, List<String>> jsonMap;
 
-    @Before
+    @BeforeEach
     public void pageSetup() {
         System.setProperty("webdriver.gecko.driver", "src/assets/geckodriver.exe");
         wd = new FirefoxDriver();
@@ -37,7 +41,7 @@ public class Answer3Tests {
         wd.navigate().to("file://" + html.getAbsolutePath());
     }
 
-    @Before
+    @BeforeEach
     public void answerSetup() {
         List<String> jsonQues = new ArrayList<>();
         jsonQues.add("core java question");
@@ -60,7 +64,7 @@ public class Answer3Tests {
         jsonMap.put("cardCat", jsonCat);
     }
 
-    @Test
+    @RevaTest(tier = 5, points = 30)
     public void testContent() {
     	try {
         Map<String, String> elMap= new HashMap<>();
@@ -74,9 +78,10 @@ public class Answer3Tests {
         elements.stream().forEach(e-> elMap.put(e.getAttribute("id"), e.getText()));
         wd.close();
         elMap.keySet().stream().forEach(e->assertTrue(jsonMap.get(e).contains(elMap.get(e))));
-        addPoints(30);
     	} catch(Exception e) {
     		fail();
+    	} finally {
+    		wd.close();
     	}
     }
 

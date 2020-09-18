@@ -1,35 +1,38 @@
 package com.revature.tier4.answers;
 
-import static com.revature.tier4.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.revature.config.ConnectionUtil;
 
-import org.junit.Before;
-import org.junit.Test;
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt: Establish a connection to a deployed database using JDBC.
  */
+@ExtendWith(RevAssess.class)
 public class Answer1Tests {
 
 	private ConnectionUtil cu;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		cu = ConnectionUtil.getInstance();
 	}
 
-	@Test
+	@RevaTest(tier = 4, points = 10)
 	public void testConnection() throws SQLException {
 		try {
 			assertNotNull(cu.connect());
 			assertTrue(cu.connect().isValid(5));
-			addPoints(10);
 		} catch (Exception e) {
 			fail();
 		}

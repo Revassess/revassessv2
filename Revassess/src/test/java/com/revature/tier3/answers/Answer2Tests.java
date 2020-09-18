@@ -1,23 +1,25 @@
 package com.revature.tier3.answers;
 
-import static com.revature.tier3.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.revature.config.ConnectionUtil;
-import com.revature.config.TestConfig;
-
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.dialect.internal.StandardDialectResolver;
 import org.hibernate.engine.jdbc.dialect.spi.DatabaseMetaDataDialectResolutionInfoAdapter;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolver;
 import org.hibernate.jdbc.ReturningWork;
-import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import com.revature.config.ConnectionUtil;
+import com.revature.config.TestConfig;
+
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 
 /**
  * prompt: 
@@ -26,15 +28,15 @@ import org.junit.Test;
  * by 3 each time.
  * 
  */
+@ExtendWith(RevAssess.class)
 public class Answer2Tests {
 
-    @Test
+    @RevaTest(tier = 3, points = 20)
     public void testSequence() {
         try{
         String sequence = ConnectionUtil.TIER_3_SEQUENCE_NAME;
         assertEquals(0, getSequenceResult(sequence)%3);
         assertEquals(1, (getSequenceResult(sequence)+1)%3);
-        addPoints(20);
         } catch(Exception e){
             fail();
         }

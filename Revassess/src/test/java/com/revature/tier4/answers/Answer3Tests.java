@@ -1,13 +1,15 @@
 package com.revature.tier4.answers;
 
-import static com.revature.tier4.answers.PointsTests.addPoints;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.revature.dao.UserRepository;
 
-import org.junit.Test;
+import dev.ranieri.assesors.RevAssess;
+import dev.ranieri.assesors.RevaTest;
 /**
  * 
  * prompt:
@@ -16,15 +18,15 @@ import org.junit.Test;
  * class using the provided class diagram
  * 
  */
+@ExtendWith(RevAssess.class)
 public class Answer3Tests {
 
-    @Test
+    @RevaTest(tier = 4, points = 30)
     public void testImplementation(){
     	try {
         Class<?>[] interfaces = UserRepository.class.getInterfaces();
         System.out.println(interfaces[0]);
         assertTrue(asList(interfaces).contains(com.revature.dao.CrudRepository.class));
-        addPoints(30);
     	} catch(Exception e) {
     		fail();
     	}
