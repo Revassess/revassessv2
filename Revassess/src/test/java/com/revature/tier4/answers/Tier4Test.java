@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
     Answer1Tests.class,
     Answer2Tests.class,
     Answer3Tests.class,
-    Answer3Tests.class,
+    Answer4Tests.class,
 })
 public class Tier4Test {
 
