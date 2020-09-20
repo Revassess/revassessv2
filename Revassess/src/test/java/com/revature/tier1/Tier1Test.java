@@ -11,6 +11,6 @@ import org.junit.runner.RunWith;
     Answer3Tests.class,
     Answer4Tests.class,
 })
-public class Tier1Tests {
+public class Tier1Test {
 
 }
