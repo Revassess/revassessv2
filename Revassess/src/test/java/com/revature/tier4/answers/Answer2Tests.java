@@ -1,5 +1,6 @@
 package com.revature.tier4.answers;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Matchers.anyLong;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 
 import com.revature.config.ConnectionUtil;
 
@@ -38,6 +40,11 @@ public class Answer2Tests {
 		mockedConnectionUtil = mock(ConnectionUtil.class);
 	}
 
+	/**
+	 * This method will first check if the method returns the desired value, then
+	 * checks if the method has invoked anything on a mocked object. This will only
+	 * work if the method utilizes the connect() method each time it is ran.
+	 */
 	@RevaTest(tier = 4, points = 20)
 	public void absoluteFunTest() throws SQLException {
 		try {
@@ -50,7 +57,8 @@ public class Answer2Tests {
 			when(mockedConnection.prepareCall(anyString())).thenReturn(mockedCallableStatement);
 			when(mockedConnectionUtil.callAbsoluteValueFunction(anyLong())).thenCallRealMethod();
 			mockedConnectionUtil.callAbsoluteValueFunction(10);
-			verify(mockedCallableStatement).execute();
+			//Determine if any method has been called on the callable statement
+			assertFalse(Mockito.mockingDetails(mockedCallableStatement).getInvocations().isEmpty());
 		} catch (Exception e) {
 			fail();
 		}

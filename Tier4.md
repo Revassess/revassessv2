@@ -14,7 +14,6 @@
   - Dummy data script: 
     - Oracle: [Quizzard Dummy Data Script](https://revature-note-assets.s3.amazonaws.com/quizzard-dummy-data.sql)
     -PostgreSQL: [Quizzard Dummy Data Script](https://example-for-java-curriculum.s3.amazonaws.com/dummy_data.sql)
-  - Push to personal branch and notify trainer to proceed to Tier 5.
 
 **Problem Set:**
   - Establish a connection to a deployed database using the provided ConnectionUtil class.
@@ -23,9 +22,9 @@
   - implement the ConnectionUtil class's callAbsoluteValueFunction method with a callable statement to call the absolute value scalar function.
     - Value: 20 Points
     
-  - Implement only the `CrudRepository` interface methods within `UserRepository` class using the provided class diagram
+  - Implement only the `CrudRepository` interface methods within `UserRepository` class using the provided class diagram given above in the setup section.
     - Value: 30 point
 
-  - Implement the entire class structure indicated in the provided class diagram
+  - Implement the entire class structure indicated in the provided class diagram, method stubs are fine to be left unimplemented.
     - Value: 40 points
 

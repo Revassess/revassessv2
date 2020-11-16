@@ -76,7 +76,7 @@ public class Answer3Tests {
         new WebDriverWait(wd, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='cardQstn']")));
         List<WebElement> elements = wd.findElements(By.xpath("//*[@id='cardId']|//*[@id='cardQstn']|//*[@id='cardAns']|//*[@id='cardCat']"));
         elements.stream().forEach(e-> elMap.put(e.getAttribute("id"), e.getText()));
-        wd.close();
+//        wd.close();
         elMap.keySet().stream().forEach(e->assertTrue(jsonMap.get(e).contains(elMap.get(e))));
     	} catch(Exception e) {
     		fail();
